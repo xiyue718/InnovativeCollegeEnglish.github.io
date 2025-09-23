@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英语学习单元</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .search-box {
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #3498db;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-box button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-box button:hover {
+            background: #2980b9;
+        }
+        
+        .unit-navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .unit-nav-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .unit-nav-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .unit-nav-btn.active {
+            background: #2c3e50;
+        }
+        
+        .units-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .unit-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .unit-card.highlighted {
+            border: 3px solid #e74c3c;
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 10px 25px rgba(231, 76, 60, 0.3); }
+            50% { box-shadow: 0 10px 30px rgba(231, 76, 60, 0.5); }
+            100% { box-shadow: 0 10px 25px rgba(231, 76, 60, 0.3); }
+        }
+        
+        .unit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .unit-header {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .unit-title {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .unit-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .unit-content {
+            padding: 20px;
+        }
+        
+        .content-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .content-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .english-text {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            line-height: 1.5;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .chinese-text {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .audio-player {
+            width: 100%;
+            margin: 10px 0 0;
+        }
+        
+        .audio-player audio {
+            width: 100%;
+        }
+        
+        .unit-footer {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .pagination button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .pagination button:hover {
+            background: #2980b9;
+        }
+        
+        .pagination button.active {
+            background: #2c3e50;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .jump-form {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .jump-form input {
+            width: 60px;
+            padding: 8px;
+            border: 2px solid #3498db;
+            border-radius: 5px 0 0 5px;
+            text-align: center;
+        }
+        
+        .jump-form button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .units-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .unit-navigation {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>英语学习单元</h1>
+            <p class="subtitle">点击播放按钮听取每个单元的英文发音</p>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="搜索单元内容...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            
+            <div class="jump-form">
+                <input type="number" id="jumpInput" placeholder="单元" min="1" max="6">
+                <button id="jumpBtn">跳转到单元</button>
+            </div>
+            
+            <div class="unit-navigation" id="unitNav">
+                <!-- 导航按钮将通过JS动态生成 -->
+            </div>
+        </header>
+        
+        <div class="units-grid" id="unitsContainer">
+            <!-- 单元内容将通过JS动态生成 -->
+        </div>
+        
+        <div class="pagination">
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>下一页</button>
+        </div>
+        
+        <footer>
+            <p>英语学习平台 &copy; 2023 - 提升您的英语技能</p>
+            <p>提示：使用URL参数?unit=X可以直接跳转到特定单元（例如：?unit=3）</p>
+        </footer>
+    </div>
+
+    <script>
+        // 单元数据 - 每个单元包含多个内容项
+        const unitsData = [
+            {
+                id: 1,
+                title: "日常问候",
+                subtitle: "基础对话",
+                content: [
+                    {
+                        english: "Hello, how are you today?",
+                        chinese: "你好，今天过得怎么样？",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "I'm doing well, thank you. What about you?",
+                        chinese: "我很好，谢谢。你呢？",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "It's nice to meet you.",
+                        chinese: "很高兴认识你。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "Have a good day!",
+                        chinese: "祝你今天愉快！",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "餐厅点餐",
+                subtitle: "实用对话",
+                content: [
+                    {
+                        english: "I'd like to order the grilled salmon with vegetables, please.",
+                        chinese: "我想点烤三文鱼配蔬菜。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "Could I have a glass of water as well?",
+                        chinese: "可以再给我一杯水吗？",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "What do you recommend?",
+                        chinese: "你有什么推荐？",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "Could we have the bill, please?",
+                        chinese: "请给我们账单。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "商务会议",
+                subtitle: "专业英语",
+                content: [
+                    {
+                        english: "According to the quarterly report, our sales have increased by 15%.",
+                        chinese: "根据季度报告，我们的销售额增长了15%。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "Let's discuss the marketing strategy for the next quarter.",
+                        chinese: "让我们讨论下一季度的营销策略。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "I'd like to propose a new approach to customer engagement.",
+                        chinese: "我想提出一种新的客户互动方法。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "We need to focus on improving our online presence.",
+                        chinese: "我们需要专注于提升我们的在线影响力。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "旅行问路",
+                subtitle: "实用对话",
+                content: [
+                    {
+                        english: "Excuse me, could you tell me how to get to the nearest subway station?",
+                        chinese: "打扰一下，你能告诉我去最近的地铁站怎么走吗？",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "Is it within walking distance?",
+                        chinese: "步行可以到达吗？",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "How long does it take to get to the city center by bus?",
+                        chinese: "坐公交车到市中心需要多长时间？",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "Where can I find a taxi stand?",
+                        chinese: "我在哪里可以找到出租车停靠站？",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "天气讨论",
+                subtitle: "日常对话",
+                content: [
+                    {
+                        english: "The weather forecast says it's going to rain this afternoon.",
+                        chinese: "天气预报说今天下午会下雨。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "Don't forget to bring your umbrella with you.",
+                        chinese: "别忘了带伞。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "It's quite warm for this time of year.",
+                        chinese: "对于一年中的这个时候来说，天气相当暖和。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "I hope the weather clears up by the weekend.",
+                        chinese: "我希望周末天气会转晴。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    }
+                ]
+            },
+            {
+                id: 6,
+                title: "科技讨论",
+                subtitle: "专业英语",
+                content: [
+                    {
+                        english: "Artificial intelligence is transforming various industries.",
+                        chinese: "人工智能正在改变各个行业。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "Automation is improving efficiency in manufacturing.",
+                        chinese: "自动化正在提高制造业的效率。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "Cloud computing has revolutionized data storage.",
+                        chinese: "云计算彻底改变了数据存储方式。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    },
+                    {
+                        english: "Cybersecurity is becoming increasingly important.",
+                        chinese: "网络安全变得越来越重要。",
+                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                    }
+                ]
+            }
+        ];
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 生成单元导航
+            generateUnitNavigation();
+            
+            // 生成单元卡片
+            generateUnitCards();
+            
+            // 检查URL参数并跳转到相应单元
+            checkUrlParams();
+            
+            // 添加事件监听器
+            setupEventListeners();
+        });
+
+        // 生成单元导航
+        function generateUnitNavigation() {
+            const unitNav = document.getElementById('unitNav');
+            unitsData.forEach(unit => {
+                const button = document.createElement('button');
+                button.className = 'unit-nav-btn';
+                button.textContent = `单元 ${unit.id}: ${unit.title}`;
+                button.dataset.unitId = unit.id;
+                unitNav.appendChild(button);
+            });
+        }
+
+        // 生成单元卡片
+        function generateUnitCards() {
+            const unitsContainer = document.getElementById('unitsContainer');
+            unitsData.forEach(unit => {
+                const card = document.createElement('div');
+                card.className = 'unit-card';
+                card.id = `unit-${unit.id}`;
+                
+                // 生成内容项
+                let contentHTML = '';
+                unit.content.forEach((item, index) => {
+                    contentHTML += `
+                        <div class="content-item">
+                            <p class="english-text">${item.english}</p>
+                            <p class="chinese-text">${item.chinese}</p>
+                            <div class="audio-player">
+                                <audio controls>
+                                    <source src="${item.audio}" type="audio/wav">
+                                    您的浏览器不支持音频元素。
+                                </audio>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                card.innerHTML = `
+                    <div class="unit-header">
+                        <h2 class="unit-title">单元 ${unit.id}: ${unit.title}</h2>
+                        <p class="unit-subtitle">${unit.subtitle}</p>
+                    </div>
+                    <div class="unit-content">
+                        ${contentHTML}
+                    </div>
+                    <div class="unit-footer">
+                        本单元包含 ${unit.content.length} 个学习项目
+                    </div>
+                `;
+                
+                unitsContainer.appendChild(card);
+            });
+        }
+
+        // 检查URL参数
+        function checkUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const unitParam = urlParams.get('unit');
+            
+            if (unitParam) {
+                const unitId = parseInt(unitParam);
+                if (unitId >= 1 && unitId <= unitsData.length) {
+                    // 延迟执行以确保DOM已完全加载
+                    setTimeout(() => {
+                        jumpToUnit(unitId);
+                    }, 100);
+                }
+            }
+        }
+
+        // 跳转到指定单元
+        function jumpToUnit(unitId) {
+            // 移除所有高亮
+            document.querySelectorAll('.unit-card').forEach(card => {
+                card.classList.remove('highlighted');
+            });
+            
+            // 移除所有导航按钮激活状态
+            document.querySelectorAll('.unit-nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 高亮目标单元
+            const targetUnit = document.getElementById(`unit-${unitId}`);
+            if (targetUnit) {
+                targetUnit.classList.add('highlighted');
+                
+                // 滚动到目标单元
+                targetUnit.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+                
+                // 激活对应的导航按钮
+                const targetNavBtn = document.querySelector(`.unit-nav-btn[data-unit-id="${unitId}"]`);
+                if (targetNavBtn) {
+                    targetNavBtn.classList.add('active');
+                }
+                
+                // 更新URL但不刷新页面
+                const newUrl = `${window.location.pathname}?unit=${unitId}`;
+                window.history.replaceState(null, '', newUrl);
+            }
+        }
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            // 搜索功能
+            document.getElementById('searchBtn').addEventListener('click', function() {
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+                const units = document.querySelectorAll('.unit-card');
+                
+                units.forEach(unit => {
+                    const text = unit.querySelector('.unit-content').textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        unit.style.display = 'block';
+                    } else {
+                        unit.style.display = 'none';
+                    }
+                });
+            });
+            
+            // 单元跳转功能
+            document.getElementById('jumpBtn').addEventListener('click', function() {
+                const unitId = parseInt(document.getElementById('jumpInput').value);
+                if (unitId >= 1 && unitId <= unitsData.length) {
+                    jumpToUnit(unitId);
+                } else {
+                    alert(`请输入有效的单元编号 (1-${unitsData.length})`);
+                }
+            });
+            
+            // 单元导航按钮
+            document.querySelectorAll('.unit-nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const unitId = parseInt(this.dataset.unitId);
+                    jumpToUnit(unitId);
+                });
+            });
+            
+            // 分页按钮
+            const paginationButtons = document.querySelectorAll('.pagination button');
+            paginationButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    paginationButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
