@@ -2,42 +2,104 @@
   "units": [
     {
       "id": 1,
-      "title": "日常对话",
-      "subtitle": "基础交流",
+      "title": "Campus",
+      "subtitle": "",
       "themes": [
         {
           "id": 1,
-          "title": "问候与介绍",
+          "title": "Meeting On Campus",
           "parts": [
             {
               "id": 1,
-              "title": "基本问候",
+              "title": "Useful Sentences",
               "sentences": [
                 {
-                  "english": "Hello, how are you today?",
-                  "chinese": "你好，今天过得怎么样？",
-                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                  "id": 1,
+                  "english": "How do you like your present campus life?",
+                  "chinese": "你觉得你现在的校园生活怎么样？",
+                  "audio": "audio\\Unit1\\Topic1\\Part1\\1.mp3"
                 },
                 {
-                  "english": "I'm doing well, thank you. What about you?",
-                  "chinese": "我很好，谢谢。你呢？",
-                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                  "id": 2,
+                  "english": "The campus covers an area of twenty square kilometers.",
+                  "chinese": "校园占地20平方公里。",
+                  "audio": ""
+                },
+                {
+                  "id": 3,
+                  "english": "The beautiful scenery of the campus, with its green lawns and green threes, creates a peaceful and pleasant learning environment.",
+                  "chinese": "大学校园美丽的景色，有绿色的草坪和树木，营造出宁静宜人的学习环境。",
+                  "audio": ""
+                },
+                {
+                  "id": 4,
+                  "english": "Mobile phones are becoming a new scene on campus.",
+                  "chinese": "手机正在成为校园里的一道新的风景。",
+                  "audio": ""
+                },
+                {
+                  "id": 5,
+                  "english": "They lead a busy and colorful life on campus.",
+                  "chinese": "他们过着忙碌而丰富多彩的校园生活。",
+                  "audio": ""
+                },
+                {
+                  "id": 6,
+                  "english": "Are you involved in any extra-curricular activities on campus?",
+                  "chinese": "你在校园里参加过什么课外活动吗？",
+                  "audio": ""
+                },
+                {
+                  "id": 7,
+                  "english": "Our campus is surrounded by green mountains and a clear river.",
+                  "chinese": "我们校园四周青山绿水。",
+                  "audio": ""
+                },
+                {
+                  "id": 8,
+                  "english": "The artificial lake has a beautiful scenery. Let's take some photos there.",
+                  "chinese": "这个人工湖风景优美。我们去那儿拍些照片吧。",
+                  "audio": ""
+                },
+                {
+                  "id": 9,
+                  "english": "Walk along this road to the end and you will find the clinic. You won't miss it.",
+                  "chinese": "沿着这条路走到尽头，你会找到诊所。你肯定能找到的。",
+                  "audio": ""
+                },
+                {
+                  "id": 10,
+                  "english": "We need to work hard for a harmonious campus.",
+                  "chinese": "我们需要为和谐校园而努力。",
+                  "audio": ""
+                },
+                {
+                  "id": 11,
+                  "english": "The college campus is not only a place for study, but also a stage for students to show their talents and develop their interests.",
+                  "chinese": "大学校园不仅是学习的地方，也是学生展示才华和发展兴趣的舞台。",
+                  "audio": ""
+                },
+                {
+                  "id": 12,
+                  "english": "You can get what you need for your daily life in the campus supermarket.",
+                  "chinese": "你可以在校园超市买到你日常生活所需用品。",
+                  "audio": ""
                 }
               ],
               "vocabulary": [
                 {
-                  "english": "Hello",
-                  "chinese": "你好",
-                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                  "english": "present",
+                  "chinese": "adj.现在的 n.礼物",
+                  "audio": ""
                 },
                 {
-                  "english": "How are you?",
-                  "chinese": "你好吗？",
-                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                  "english": "campus",
+                  "chinese": "n.(大学)校园",
+                  "audio": ""
                 },
                 {
-                  "english": "Thank you",
-                  "chinese": "谢谢",
+                  "english": "square",
+                  "chinese": "adj.平方的;正方形的;正直的 n.平方;广场;正方形",
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
                 }
               ]
