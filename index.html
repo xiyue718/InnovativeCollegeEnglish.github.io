@@ -433,6 +433,13 @@
             color: #2c3e50;
         }
         
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+        
         @media (max-width: 768px) {
             .units-container {
                 grid-template-columns: 1fr;
@@ -482,9 +489,9 @@
             </div>
             
             <div class="jump-form">
-                <input type="number" id="unitInput" placeholder="单元" min="1" max="3">
-                <input type="number" id="topicInput" placeholder="主题" min="1" max="2">
-                <input type="number" id="partInput" placeholder="部分" min="1" max="2">
+                <input type="number" id="unitInput" placeholder="单元" min="1">
+                <input type="number" id="topicInput" placeholder="主题" min="1">
+                <input type="number" id="partInput" placeholder="部分" min="1">
                 <button id="jumpBtn">快速跳转</button>
             </div>
             
@@ -494,7 +501,9 @@
         </header>
         
         <div class="units-container" id="unitsContainer">
-            <!-- 单元内容将通过JS动态生成 -->
+            <div class="loading" id="loadingMessage">
+                <i class="fas fa-spinner fa-spin"></i> 正在加载学习内容...
+            </div>
         </div>
         
         <div class="pagination">
@@ -511,205 +520,89 @@
     </div>
 
     <script>
-        // 单元数据 - 每个单元包含多个主题，每个主题包含多个部分
-        const unitsData = [
-            {
-                id: 1,
-                title: "日常对话",
-                subtitle: "基础交流",
-                themes: [
-                    {
-                        id: 1,
-                        title: "问候与介绍",
-                        parts: [
-                            {
-                                id: 1,
-                                title: "基本问候",
-                                sentences: [
-                                    {
-                                        english: "Hello, how are you today?",
-                                        chinese: "你好，今天过得怎么样？",
-                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                                    },
-                                    {
-                                        english: "I'm doing well, thank you. What about you?",
-                                        chinese: "我很好，谢谢。你呢？",
-                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                                    }
-                                ],
-                                vocabulary: [
-                                    { english: "Hello", chinese: "你好", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
-                                    { english: "How are you?", chinese: "你好吗？", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
-                                    { english: "Thank you", chinese: "谢谢", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" }
-                                ]
-                            },
-                            {
-                                id: 2,
-                                title: "自我介绍",
-                                sentences: [
-                                    {
-                                        english: "My name is John. Nice to meet you.",
-                                        chinese: "我叫约翰。很高兴认识你。",
-                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                                    },
-                                    {
-                                        english: "I'm from Canada. Where are you from?",
-                                        chinese: "我来自加拿大。你来自哪里？",
-                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                                    }
-                                ],
-                                vocabulary: [
-                                    { english: "Name", chinese: "名字", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
-                                    { english: "Nice to meet you", chinese: "很高兴认识你", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
-                                    { english: "From", chinese: "来自", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        title: "日常活动",
-                        parts: [
-                            {
-                                id: 1,
-                                title: "日常作息",
-                                sentences: [
-                                    {
-                                        english: "I usually wake up at 7 o'clock in the morning.",
-                                        chinese: "我通常早上7点起床。",
-                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                                    },
-                                    {
-                                        english: "After work, I like to go for a walk in the park.",
-                                        chinese: "下班后，我喜欢去公园散步。",
-                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                                    }
-                                ],
-                                vocabulary: [
-                                    { english: "Wake up", chinese: "醒来", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
-                                    { english: "Usually", chinese: "通常", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
-                                    { english: "After work", chinese: "下班后", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: 2,
-                title: "餐厅用餐",
-                subtitle: "实用场景",
-                themes: [
-                    {
-                        id: 1,
-                        title: "点餐",
-                        parts: [
-                            {
-                                id: 1,
-                                title: "选择菜品",
-                                sentences: [
-                                    {
-                                        english: "I'd like to order the grilled salmon with vegetables, please.",
-                                        chinese: "我想点烤三文鱼配蔬菜。",
-                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                                    },
-                                    {
-                                        english: "Could I have a glass of water as well?",
-                                        chinese: "可以再给我一杯水吗？",
-                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                                    }
-                                ],
-                                vocabulary: [
-                                    { english: "Order", chinese: "点餐", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
-                                    { english: "Grilled salmon", chinese: "烤三文鱼", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
-                                    { english: "Vegetables", chinese: "蔬菜", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        title: "结账与反馈",
-                        parts: [
-                            {
-                                id: 1,
-                                title: "支付账单",
-                                sentences: [
-                                    {
-                                        english: "Could we have the bill, please?",
-                                        chinese: "请给我们账单。",
-                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                                    },
-                                    {
-                                        english: "Do you accept credit cards?",
-                                        chinese: "你们接受信用卡吗？",
-                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                                    }
-                                ],
-                                vocabulary: [
-                                    { english: "Bill", chinese: "账单", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
-                                    { english: "Credit card", chinese: "信用卡", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
-                                    { english: "Accept", chinese: "接受", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: 3,
-                title: "商务英语",
-                subtitle: "专业场景",
-                themes: [
-                    {
-                        id: 1,
-                        title: "会议讨论",
-                        parts: [
-                            {
-                                id: 1,
-                                title: "项目汇报",
-                                sentences: [
-                                    {
-                                        english: "According to the quarterly report, our sales have increased by 15%.",
-                                        chinese: "根据季度报告，我们的销售额增长了15%。",
-                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                                    },
-                                    {
-                                        english: "We need to focus on improving our online presence.",
-                                        chinese: "我们需要专注于提升我们的在线影响力。",
-                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                                    }
-                                ],
-                                vocabulary: [
-                                    { english: "Quarterly report", chinese: "季度报告", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
-                                    { english: "Sales", chinese: "销售额", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
-                                    { english: "Online presence", chinese: "在线影响力", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
-        ];
+        // 全局变量存储数据
+        let unitsData = [];
 
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
-            // 生成单元导航
-            generateUnitNavigation();
-            
-            // 生成单元卡片
-            generateUnitCards();
-            
-            // 检查URL参数并跳转到相应部分
-            checkUrlParams();
-            
-            // 添加事件监听器
-            setupEventListeners();
+            // 从外部JSON文件加载数据
+            loadData();
         });
+
+        // 从外部JSON文件加载数据
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) {
+                    throw new Error('网络响应不正常');
+                }
+                const data = await response.json();
+                unitsData = data.units;
+                
+                // 隐藏加载消息
+                document.getElementById('loadingMessage').style.display = 'none';
+                
+                // 生成单元导航
+                generateUnitNavigation();
+                
+                // 生成单元卡片
+                generateUnitCards();
+                
+                // 检查URL参数并跳转到相应部分
+                checkUrlParams();
+                
+                // 添加事件监听器
+                setupEventListeners();
+                
+                // 更新跳转表单的最大值
+                updateJumpFormMaxValues();
+            } catch (error) {
+                console.error('加载数据时出错:', error);
+                document.getElementById('loadingMessage').innerHTML = 
+                    '<i class="fas fa-exclamation-triangle"></i> 加载数据失败，请刷新页面重试';
+            }
+        }
+
+        // 更新跳转表单的最大值
+        function updateJumpFormMaxValues() {
+            const unitInput = document.getElementById('unitInput');
+            const topicInput = document.getElementById('topicInput');
+            const partInput = document.getElementById('partInput');
+            
+            if (unitsData.length > 0) {
+                unitInput.max = unitsData.length;
+                
+                // 设置默认值为第一个单元
+                unitInput.value = 1;
+                
+                // 更新主题和部分的最大值
+                updateTopicAndPartMaxValues(1);
+            }
+        }
+
+        // 更新主题和部分的最大值
+        function updateTopicAndPartMaxValues(unitId) {
+            const topicInput = document.getElementById('topicInput');
+            const partInput = document.getElementById('partInput');
+            
+            const unit = unitsData.find(u => u.id === unitId);
+            if (unit && unit.themes.length > 0) {
+                topicInput.max = unit.themes.length;
+                topicInput.value = 1;
+                
+                const theme = unit.themes[0];
+                if (theme && theme.parts.length > 0) {
+                    partInput.max = theme.parts.length;
+                    partInput.value = 1;
+                }
+            }
+        }
 
         // 生成单元导航
         function generateUnitNavigation() {
             const unitNav = document.getElementById('unitNav');
+            unitNav.innerHTML = ''; // 清空现有内容
+            
             unitsData.forEach(unit => {
                 const button = document.createElement('button');
                 button.className = 'unit-nav-btn';
@@ -722,6 +615,8 @@
         // 生成单元卡片
         function generateUnitCards() {
             const unitsContainer = document.getElementById('unitsContainer');
+            unitsContainer.innerHTML = ''; // 清空现有内容
+            
             unitsData.forEach(unit => {
                 const card = document.createElement('div');
                 card.className = 'unit-card';
@@ -891,6 +786,10 @@
                 // 更新URL但不刷新页面
                 const newUrl = `${window.location.pathname}?unit=${unitId}`;
                 window.history.replaceState(null, '', newUrl);
+                
+                // 更新跳转表单
+                document.getElementById('unitInput').value = unitId;
+                updateTopicAndPartMaxValues(unitId);
             }
         }
 
@@ -909,6 +808,24 @@
                 // 更新URL但不刷新页面
                 const newUrl = `${window.location.pathname}?unit=${unitId}&topic=${themeId}`;
                 window.history.replaceState(null, '', newUrl);
+                
+                // 更新跳转表单
+                document.getElementById('topicInput').value = themeId;
+                updatePartMaxValues(unitId, themeId);
+            }
+        }
+
+        // 更新部分的最大值
+        function updatePartMaxValues(unitId, themeId) {
+            const partInput = document.getElementById('partInput');
+            
+            const unit = unitsData.find(u => u.id === unitId);
+            if (unit) {
+                const theme = unit.themes.find(t => t.id === themeId);
+                if (theme && theme.parts.length > 0) {
+                    partInput.max = theme.parts.length;
+                    partInput.value = 1;
+                }
             }
         }
 
@@ -939,6 +856,9 @@
                 // 更新URL但不刷新页面
                 const newUrl = `${window.location.pathname}?unit=${unitId}&topic=${themeId}&part=${partId}`;
                 window.history.replaceState(null, '', newUrl);
+                
+                // 更新跳转表单
+                document.getElementById('partInput').value = partId;
             }
         }
 
@@ -957,6 +877,23 @@
                         unit.style.display = 'none';
                     }
                 });
+            });
+            
+            // 单元输入变化时更新主题和部分的最大值
+            document.getElementById('unitInput').addEventListener('change', function() {
+                const unitId = parseInt(this.value);
+                if (unitId >= 1 && unitId <= unitsData.length) {
+                    updateTopicAndPartMaxValues(unitId);
+                }
+            });
+            
+            // 主题输入变化时更新部分的最大值
+            document.getElementById('topicInput').addEventListener('change', function() {
+                const unitId = parseInt(document.getElementById('unitInput').value);
+                const themeId = parseInt(this.value);
+                if (unitId && themeId) {
+                    updatePartMaxValues(unitId, themeId);
+                }
             });
             
             // 快速跳转功能
