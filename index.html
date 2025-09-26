@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英语学习单元</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .search-box {
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #3498db;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-box button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-box button:hover {
+            background: #2980b9;
+        }
+        
+        .unit-navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .unit-nav-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .unit-nav-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .unit-nav-btn.active {
+            background: #2c3e50;
+        }
+        
+        .units-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .unit-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .unit-card.highlighted {
+            border: 3px solid #e74c3c;
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 10px 25px rgba(231, 76, 60, 0.3); }
+            50% { box-shadow: 0 10px 30px rgba(231, 76, 60, 0.5); }
+            100% { box-shadow: 0 10px 25px rgba(231, 76, 60, 0.3); }
+        }
+        
+        .unit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .unit-header {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .unit-title {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .unit-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .unit-content {
+            padding: 20px;
+        }
+        
+        .theme-section {
+            margin-bottom: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .theme-header {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .theme-title {
+            font-size: 1.2rem;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #3498db;
+            font-size: 1.1rem;
+        }
+        
+        .theme-content {
+            padding: 15px;
+        }
+        
+        .part-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e8e8e8;
+            border-radius: 6px;
+            background: #fdfdfd;
+        }
+        
+        .part-section.highlighted {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.3);
+        }
+        
+        .part-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .part-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .part-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #3498db;
+        }
+        
+        .part-content {
+            display: none; /* 默认折叠 */
+        }
+        
+        .sentences-container {
+            margin-bottom: 20px;
+        }
+        
+        .sentence-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .sentence-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .english-text {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            line-height: 1.5;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .chinese-text {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .audio-player {
+            width: 100%;
+            margin: 10px 0 0;
+        }
+        
+        .audio-player audio {
+            width: 100%;
+        }
+        
+        .small-audio-player {
+            width: 100%;
+            margin-top: 5px;
+        }
+        
+        .small-audio-player audio {
+            width: 100%;
+            height: 30px;
+        }
+        
+        .vocab-section {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        
+        .vocab-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        
+        .vocab-title i {
+            margin-right: 8px;
+            color: #e74c3c;
+        }
+        
+        .vocab-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .vocab-item {
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .vocab-english {
+            font-weight: 500;
+            color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .vocab-chinese {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        .play-vocab-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .unit-footer {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .pagination button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .pagination button:hover {
+            background: #2980b9;
+        }
+        
+        .pagination button.active {
+            background: #2c3e50;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .jump-form {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .jump-form input {
+            width: 60px;
+            padding: 8px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .jump-form button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .collapsed .theme-content {
+            display: none;
+        }
+        
+        .expanded .part-content {
+            display: block;
+        }
+        
+        .quick-jump-info {
+            background: #e8f4fd;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+            color: #2c3e50;
+        }
+        
+        @media (max-width: 768px) {
+            .units-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .unit-navigation {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+            }
+            
+            .vocab-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .jump-form {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .jump-form input {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>英语学习单元</h1>
+            <p class="subtitle">点击播放按钮听取每个句子和单词的英文发音</p>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="搜索单元内容...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            
+            <div class="quick-jump-info">
+                <i class="fas fa-info-circle"></i> 使用URL参数快速跳转：?unit=1&topic=1&part=1
+            </div>
+            
+            <div class="jump-form">
+                <input type="number" id="unitInput" placeholder="单元" min="1" max="3">
+                <input type="number" id="topicInput" placeholder="主题" min="1" max="2">
+                <input type="number" id="partInput" placeholder="部分" min="1" max="2">
+                <button id="jumpBtn">快速跳转</button>
+            </div>
+            
+            <div class="unit-navigation" id="unitNav">
+                <!-- 导航按钮将通过JS动态生成 -->
+            </div>
+        </header>
+        
+        <div class="units-container" id="unitsContainer">
+            <!-- 单元内容将通过JS动态生成 -->
+        </div>
+        
+        <div class="pagination">
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>下一页</button>
+        </div>
+        
+        <footer>
+            <p>英语学习平台 &copy; 2023 - 提升您的英语技能</p>
+            <p>提示：使用URL参数?unit=X&topic=Y&part=Z可以直接跳转到特定部分</p>
+        </footer>
+    </div>
+
+    <script>
+        // 单元数据 - 每个单元包含多个主题，每个主题包含多个部分
+        const unitsData = [
+            {
+                id: 1,
+                title: "日常对话",
+                subtitle: "基础交流",
+                themes: [
+                    {
+                        id: 1,
+                        title: "问候与介绍",
+                        parts: [
+                            {
+                                id: 1,
+                                title: "基本问候",
+                                sentences: [
+                                    {
+                                        english: "Hello, how are you today?",
+                                        chinese: "你好，今天过得怎么样？",
+                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                                    },
+                                    {
+                                        english: "I'm doing well, thank you. What about you?",
+                                        chinese: "我很好，谢谢。你呢？",
+                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                                    }
+                                ],
+                                vocabulary: [
+                                    { english: "Hello", chinese: "你好", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
+                                    { english: "How are you?", chinese: "你好吗？", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
+                                    { english: "Thank you", chinese: "谢谢", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" }
+                                ]
+                            },
+                            {
+                                id: 2,
+                                title: "自我介绍",
+                                sentences: [
+                                    {
+                                        english: "My name is John. Nice to meet you.",
+                                        chinese: "我叫约翰。很高兴认识你。",
+                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                                    },
+                                    {
+                                        english: "I'm from Canada. Where are you from?",
+                                        chinese: "我来自加拿大。你来自哪里？",
+                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                                    }
+                                ],
+                                vocabulary: [
+                                    { english: "Name", chinese: "名字", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
+                                    { english: "Nice to meet you", chinese: "很高兴认识你", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
+                                    { english: "From", chinese: "来自", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        title: "日常活动",
+                        parts: [
+                            {
+                                id: 1,
+                                title: "日常作息",
+                                sentences: [
+                                    {
+                                        english: "I usually wake up at 7 o'clock in the morning.",
+                                        chinese: "我通常早上7点起床。",
+                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                                    },
+                                    {
+                                        english: "After work, I like to go for a walk in the park.",
+                                        chinese: "下班后，我喜欢去公园散步。",
+                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                                    }
+                                ],
+                                vocabulary: [
+                                    { english: "Wake up", chinese: "醒来", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
+                                    { english: "Usually", chinese: "通常", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
+                                    { english: "After work", chinese: "下班后", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "餐厅用餐",
+                subtitle: "实用场景",
+                themes: [
+                    {
+                        id: 1,
+                        title: "点餐",
+                        parts: [
+                            {
+                                id: 1,
+                                title: "选择菜品",
+                                sentences: [
+                                    {
+                                        english: "I'd like to order the grilled salmon with vegetables, please.",
+                                        chinese: "我想点烤三文鱼配蔬菜。",
+                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                                    },
+                                    {
+                                        english: "Could I have a glass of water as well?",
+                                        chinese: "可以再给我一杯水吗？",
+                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                                    }
+                                ],
+                                vocabulary: [
+                                    { english: "Order", chinese: "点餐", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
+                                    { english: "Grilled salmon", chinese: "烤三文鱼", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
+                                    { english: "Vegetables", chinese: "蔬菜", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        title: "结账与反馈",
+                        parts: [
+                            {
+                                id: 1,
+                                title: "支付账单",
+                                sentences: [
+                                    {
+                                        english: "Could we have the bill, please?",
+                                        chinese: "请给我们账单。",
+                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                                    },
+                                    {
+                                        english: "Do you accept credit cards?",
+                                        chinese: "你们接受信用卡吗？",
+                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                                    }
+                                ],
+                                vocabulary: [
+                                    { english: "Bill", chinese: "账单", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
+                                    { english: "Credit card", chinese: "信用卡", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
+                                    { english: "Accept", chinese: "接受", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "商务英语",
+                subtitle: "专业场景",
+                themes: [
+                    {
+                        id: 1,
+                        title: "会议讨论",
+                        parts: [
+                            {
+                                id: 1,
+                                title: "项目汇报",
+                                sentences: [
+                                    {
+                                        english: "According to the quarterly report, our sales have increased by 15%.",
+                                        chinese: "根据季度报告，我们的销售额增长了15%。",
+                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                                    },
+                                    {
+                                        english: "We need to focus on improving our online presence.",
+                                        chinese: "我们需要专注于提升我们的在线影响力。",
+                                        audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                                    }
+                                ],
+                                vocabulary: [
+                                    { english: "Quarterly report", chinese: "季度报告", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
+                                    { english: "Sales", chinese: "销售额", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" },
+                                    { english: "Online presence", chinese: "在线影响力", audio: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 生成单元导航
+            generateUnitNavigation();
+            
+            // 生成单元卡片
+            generateUnitCards();
+            
+            // 检查URL参数并跳转到相应部分
+            checkUrlParams();
+            
+            // 添加事件监听器
+            setupEventListeners();
+        });
+
+        // 生成单元导航
+        function generateUnitNavigation() {
+            const unitNav = document.getElementById('unitNav');
+            unitsData.forEach(unit => {
+                const button = document.createElement('button');
+                button.className = 'unit-nav-btn';
+                button.textContent = `单元 ${unit.id}: ${unit.title}`;
+                button.dataset.unitId = unit.id;
+                unitNav.appendChild(button);
+            });
+        }
+
+        // 生成单元卡片
+        function generateUnitCards() {
+            const unitsContainer = document.getElementById('unitsContainer');
+            unitsData.forEach(unit => {
+                const card = document.createElement('div');
+                card.className = 'unit-card';
+                card.id = `unit-${unit.id}`;
+                card.dataset.unitId = unit.id;
+                
+                // 生成主题内容
+                let themesHTML = '';
+                unit.themes.forEach(theme => {
+                    let partsHTML = '';
+                    theme.parts.forEach(part => {
+                        // 生成句子内容
+                        let sentencesHTML = '';
+                        part.sentences.forEach(sentence => {
+                            sentencesHTML += `
+                                <div class="sentence-item">
+                                    <p class="english-text">${sentence.english}</p>
+                                    <p class="chinese-text">${sentence.chinese}</p>
+                                    <div class="audio-player">
+                                        <audio controls>
+                                            <source src="${sentence.audio}" type="audio/wav">
+                                            您的浏览器不支持音频元素。
+                                        </audio>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                        
+                        // 生成词汇内容
+                        let vocabHTML = '';
+                        part.vocabulary.forEach(vocab => {
+                            vocabHTML += `
+                                <div class="vocab-item">
+                                    <div class="vocab-english">
+                                        ${vocab.english}
+                                        <button class="play-vocab-btn" data-audio="${vocab.audio}">
+                                            <i class="fas fa-volume-up"></i>
+                                        </button>
+                                    </div>
+                                    <div class="vocab-chinese">${vocab.chinese}</div>
+                                    <audio class="vocab-audio" src="${vocab.audio}"></audio>
+                                </div>
+                            `;
+                        });
+                        
+                        partsHTML += `
+                            <div class="part-section" id="part-${unit.id}-${theme.id}-${part.id}" 
+                                 data-unit-id="${unit.id}" data-theme-id="${theme.id}" data-part-id="${part.id}">
+                                <div class="part-header">
+                                    <span class="part-title">${part.title}</span>
+                                    <button class="part-toggle">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                                <div class="part-content">
+                                    <div class="sentences-container">
+                                        ${sentencesHTML}
+                                    </div>
+                                    <div class="vocab-section">
+                                        <div class="vocab-title">
+                                            <i class="fas fa-book"></i> New Words and Expressions
+                                        </div>
+                                        <div class="vocab-list">
+                                            ${vocabHTML}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    themesHTML += `
+                        <div class="theme-section" id="theme-${unit.id}-${theme.id}" 
+                             data-unit-id="${unit.id}" data-theme-id="${theme.id}">
+                            <div class="theme-header">
+                                <span class="theme-title">${theme.title}</span>
+                                <button class="theme-toggle">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div class="theme-content">
+                                ${partsHTML}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                // 计算总部分数
+                let totalParts = 0;
+                unit.themes.forEach(theme => {
+                    totalParts += theme.parts.length;
+                });
+                
+                card.innerHTML = `
+                    <div class="unit-header">
+                        <h2 class="unit-title">单元 ${unit.id}: ${unit.title}</h2>
+                        <p class="unit-subtitle">${unit.subtitle}</p>
+                    </div>
+                    <div class="unit-content">
+                        ${themesHTML}
+                    </div>
+                    <div class="unit-footer">
+                        本单元包含 ${unit.themes.length} 个主题，共 ${totalParts} 个学习部分
+                    </div>
+                `;
+                
+                unitsContainer.appendChild(card);
+            });
+        }
+
+        // 检查URL参数
+        function checkUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const unitParam = urlParams.get('unit');
+            const topicParam = urlParams.get('topic');
+            const partParam = urlParams.get('part');
+            
+            if (unitParam) {
+                const unitId = parseInt(unitParam);
+                const topicId = topicParam ? parseInt(topicParam) : null;
+                const partId = partParam ? parseInt(partParam) : null;
+                
+                if (unitId >= 1 && unitId <= unitsData.length) {
+                    // 延迟执行以确保DOM已完全加载
+                    setTimeout(() => {
+                        if (partId && topicId) {
+                            jumpToPart(unitId, topicId, partId);
+                        } else if (topicId) {
+                            jumpToTheme(unitId, topicId);
+                        } else {
+                            jumpToUnit(unitId);
+                        }
+                    }, 100);
+                }
+            }
+        }
+
+        // 跳转到指定单元
+        function jumpToUnit(unitId) {
+            // 移除所有高亮
+            document.querySelectorAll('.unit-card').forEach(card => {
+                card.classList.remove('highlighted');
+            });
+            
+            // 移除所有导航按钮激活状态
+            document.querySelectorAll('.unit-nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 高亮目标单元
+            const targetUnit = document.getElementById(`unit-${unitId}`);
+            if (targetUnit) {
+                targetUnit.classList.add('highlighted');
+                
+                // 滚动到目标单元
+                targetUnit.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+                
+                // 激活对应的导航按钮
+                const targetNavBtn = document.querySelector(`.unit-nav-btn[data-unit-id="${unitId}"]`);
+                if (targetNavBtn) {
+                    targetNavBtn.classList.add('active');
+                }
+                
+                // 更新URL但不刷新页面
+                const newUrl = `${window.location.pathname}?unit=${unitId}`;
+                window.history.replaceState(null, '', newUrl);
+            }
+        }
+
+        // 跳转到指定主题
+        function jumpToTheme(unitId, themeId) {
+            jumpToUnit(unitId);
+            
+            // 确保主题是展开的
+            const themeElement = document.getElementById(`theme-${unitId}-${themeId}`);
+            if (themeElement) {
+                themeElement.classList.remove('collapsed');
+                const icon = themeElement.querySelector('.theme-toggle i');
+                icon.classList.remove('fa-chevron-right');
+                icon.classList.add('fa-chevron-down');
+                
+                // 更新URL但不刷新页面
+                const newUrl = `${window.location.pathname}?unit=${unitId}&topic=${themeId}`;
+                window.history.replaceState(null, '', newUrl);
+            }
+        }
+
+        // 跳转到指定部分
+        function jumpToPart(unitId, themeId, partId) {
+            jumpToTheme(unitId, themeId);
+            
+            // 确保部分是展开的
+            const partElement = document.getElementById(`part-${unitId}-${themeId}-${partId}`);
+            if (partElement) {
+                // 展开部分内容
+                partElement.classList.add('expanded');
+                const icon = partElement.querySelector('.part-toggle i');
+                icon.classList.remove('fa-chevron-right');
+                icon.classList.add('fa-chevron-down');
+                
+                // 高亮部分
+                partElement.classList.add('highlighted');
+                
+                // 滚动到部分
+                setTimeout(() => {
+                    partElement.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                }, 300);
+                
+                // 更新URL但不刷新页面
+                const newUrl = `${window.location.pathname}?unit=${unitId}&topic=${themeId}&part=${partId}`;
+                window.history.replaceState(null, '', newUrl);
+            }
+        }
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            // 搜索功能
+            document.getElementById('searchBtn').addEventListener('click', function() {
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+                const units = document.querySelectorAll('.unit-card');
+                
+                units.forEach(unit => {
+                    const text = unit.querySelector('.unit-content').textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        unit.style.display = 'block';
+                    } else {
+                        unit.style.display = 'none';
+                    }
+                });
+            });
+            
+            // 快速跳转功能
+            document.getElementById('jumpBtn').addEventListener('click', function() {
+                const unitId = parseInt(document.getElementById('unitInput').value);
+                const topicId = parseInt(document.getElementById('topicInput').value);
+                const partId = parseInt(document.getElementById('partInput').value);
+                
+                if (unitId >= 1 && unitId <= unitsData.length) {
+                    if (partId && topicId) {
+                        jumpToPart(unitId, topicId, partId);
+                    } else if (topicId) {
+                        jumpToTheme(unitId, topicId);
+                    } else {
+                        jumpToUnit(unitId);
+                    }
+                } else {
+                    alert(`请输入有效的单元编号 (1-${unitsData.length})`);
+                }
+            });
+            
+            // 单元导航按钮
+            document.querySelectorAll('.unit-nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const unitId = parseInt(this.dataset.unitId);
+                    jumpToUnit(unitId);
+                });
+            });
+            
+            // 主题折叠/展开功能
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('theme-toggle') || 
+                    e.target.parentElement.classList.contains('theme-toggle')) {
+                    
+                    const toggleBtn = e.target.classList.contains('theme-toggle') ? 
+                                     e.target : e.target.parentElement;
+                    const themeSection = toggleBtn.closest('.theme-section');
+                    
+                    themeSection.classList.toggle('collapsed');
+                    
+                    const icon = toggleBtn.querySelector('i');
+                    if (themeSection.classList.contains('collapsed')) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-right');
+                    } else {
+                        icon.classList.remove('fa-chevron-right');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                }
+                
+                // 部分折叠/展开功能
+                if (e.target.classList.contains('part-toggle') || 
+                    e.target.parentElement.classList.contains('part-toggle')) {
+                    
+                    const toggleBtn = e.target.classList.contains('part-toggle') ? 
+                                     e.target : e.target.parentElement;
+                    const partSection = toggleBtn.closest('.part-section');
+                    
+                    partSection.classList.toggle('expanded');
+                    
+                    const icon = toggleBtn.querySelector('i');
+                    if (partSection.classList.contains('expanded')) {
+                        icon.classList.remove('fa-chevron-right');
+                        icon.classList.add('fa-chevron-down');
+                    } else {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-right');
+                    }
+                }
+                
+                // 词汇音频播放功能
+                if (e.target.classList.contains('play-vocab-btn') || 
+                    e.target.parentElement.classList.contains('play-vocab-btn')) {
+                    
+                    const playBtn = e.target.classList.contains('play-vocab-btn') ? 
+                                   e.target : e.target.parentElement;
+                    const audioSrc = playBtn.getAttribute('data-audio');
+                    const audioElement = new Audio(audioSrc);
+                    audioElement.play();
+                }
+            });
+            
+            // 分页按钮
+            const paginationButtons = document.querySelectorAll('.pagination button');
+            paginationButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    paginationButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
