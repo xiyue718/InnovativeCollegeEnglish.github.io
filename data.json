@@ -1,0 +1,299 @@
+{
+  "units": [
+    {
+      "id": 1,
+      "title": "日常对话",
+      "subtitle": "基础交流",
+      "themes": [
+        {
+          "id": 1,
+          "title": "问候与介绍",
+          "parts": [
+            {
+              "id": 1,
+              "title": "基本问候",
+              "sentences": [
+                {
+                  "english": "Hello, how are you today?",
+                  "chinese": "你好，今天过得怎么样？",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "I'm doing well, thank you. What about you?",
+                  "chinese": "我很好，谢谢。你呢？",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ],
+              "vocabulary": [
+                {
+                  "english": "Hello",
+                  "chinese": "你好",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "How are you?",
+                  "chinese": "你好吗？",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Thank you",
+                  "chinese": "谢谢",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "title": "自我介绍",
+              "sentences": [
+                {
+                  "english": "My name is John. Nice to meet you.",
+                  "chinese": "我叫约翰。很高兴认识你。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "I'm from Canada. Where are you from?",
+                  "chinese": "我来自加拿大。你来自哪里？",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ],
+              "vocabulary": [
+                {
+                  "english": "Name",
+                  "chinese": "名字",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Nice to meet you",
+                  "chinese": "很高兴认识你",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "From",
+                  "chinese": "来自",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "日常活动",
+          "parts": [
+            {
+              "id": 1,
+              "title": "日常作息",
+              "sentences": [
+                {
+                  "english": "I usually wake up at 7 o'clock in the morning.",
+                  "chinese": "我通常早上7点起床。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "After work, I like to go for a walk in the park.",
+                  "chinese": "下班后，我喜欢去公园散步。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ],
+              "vocabulary": [
+                {
+                  "english": "Wake up",
+                  "chinese": "醒来",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Usually",
+                  "chinese": "通常",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "After work",
+                  "chinese": "下班后",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "餐厅用餐",
+      "subtitle": "实用场景",
+      "themes": [
+        {
+          "id": 1,
+          "title": "点餐",
+          "parts": [
+            {
+              "id": 1,
+              "title": "选择菜品",
+              "sentences": [
+                {
+                  "english": "I'd like to order the grilled salmon with vegetables, please.",
+                  "chinese": "我想点烤三文鱼配蔬菜。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Could I have a glass of water as well?",
+                  "chinese": "可以再给我一杯水吗？",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ],
+              "vocabulary": [
+                {
+                  "english": "Order",
+                  "chinese": "点餐",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Grilled salmon",
+                  "chinese": "烤三文鱼",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Vegetables",
+                  "chinese": "蔬菜",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "结账与反馈",
+          "parts": [
+            {
+              "id": 1,
+              "title": "支付账单",
+              "sentences": [
+                {
+                  "english": "Could we have the bill, please?",
+                  "chinese": "请给我们账单。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Do you accept credit cards?",
+                  "chinese": "你们接受信用卡吗？",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ],
+              "vocabulary": [
+                {
+                  "english": "Bill",
+                  "chinese": "账单",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Credit card",
+                  "chinese": "信用卡",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Accept",
+                  "chinese": "接受",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "商务英语",
+      "subtitle": "专业场景",
+      "themes": [
+        {
+          "id": 1,
+          "title": "会议讨论",
+          "parts": [
+            {
+              "id": 1,
+              "title": "项目汇报",
+              "sentences": [
+                {
+                  "english": "According to the quarterly report, our sales have increased by 15%.",
+                  "chinese": "根据季度报告，我们的销售额增长了15%。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "We need to focus on improving our online presence.",
+                  "chinese": "我们需要专注于提升我们的在线影响力。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ],
+              "vocabulary": [
+                {
+                  "english": "Quarterly report",
+                  "chinese": "季度报告",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Sales",
+                  "chinese": "销售额",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Online presence",
+                  "chinese": "在线影响力",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "英语",
+      "subtitle": "专业场景",
+      "themes": [
+        {
+          "id": 1,
+          "title": "会议讨论",
+          "parts": [
+            {
+              "id": 1,
+              "title": "项目汇报",
+              "sentences": [
+                {
+                  "english": "According to the quarterly report, our sales have increased by 15%.",
+                  "chinese": "根据季度报告，我们的销售额增长了15%。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "We need to focus on improving our online presence.",
+                  "chinese": "我们需要专注于提升我们的在线影响力。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ],
+              "vocabulary": [
+                {
+                  "english": "Quarterly report",
+                  "chinese": "季度报告",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Sales",
+                  "chinese": "销售额",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "english": "Online presence",
+                  "chinese": "在线影响力",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
