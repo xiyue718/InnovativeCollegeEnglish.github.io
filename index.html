@@ -779,6 +779,38 @@
                                     ` : ''}
                                 </div>
                             `;
+                        } else if (part.type === 'wordlist') {
+                            // 单词列表类型
+                            let wordsHTML = '';
+                            part.words.forEach(word => {
+                                wordsHTML += `
+                                    <div class="vocab-item">
+                                        <div class="vocab-english">
+                                            ${word.english}
+                                            ${word.audio ? `
+                                            <button class="play-vocab-btn" data-audio="${word.audio}">
+                                                <i class="fas fa-volume-up"></i>
+                                            </button>
+                                            ` : ''}
+                                        </div>
+                                        <div class="vocab-chinese">${word.chinese}</div>
+                                    </div>
+                                `;
+                            });
+                            
+                            contentHTML = `
+                                <div class="vocab-section">
+                                    <div class="vocab-title">
+                                        <i class="fas fa-book"></i> Vocabulary List
+                                    </div>
+                                    <div class="vocab-list">
+                                        ${wordsHTML}
+                                    </div>
+                                </div>
+                            `;
+                            
+                            // wordlist类型不需要vocabulary部分，所以清空vocabHTML
+                            vocabHTML = '';
                         }
                         
                         // 生成词汇内容（如果有）
