@@ -313,6 +313,80 @@
             padding-left: 15px;
         }
         
+        /* 单词列表样式 */
+        .vocab-list-container {
+            margin-bottom: 20px;
+        }
+        
+        .vocab-list-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        
+        .vocab-list-title i {
+            margin-right: 8px;
+            color: #e74c3c;
+        }
+        
+        .vocab-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .vocab-item {
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .vocab-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .vocab-english {
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .vocab-chinese {
+            font-size: 0.95rem;
+            color: #7f8c8d;
+            line-height: 1.4;
+        }
+        
+        .play-vocab-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        
+        .play-vocab-btn:hover {
+            background: #2980b9;
+        }
+        
         .audio-player {
             width: 100%;
             margin: 10px 0 0;
@@ -351,47 +425,6 @@
         .vocab-title i {
             margin-right: 8px;
             color: #e74c3c;
-        }
-        
-        .vocab-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-        }
-        
-        .vocab-item {
-            padding: 8px;
-            background: white;
-            border-radius: 4px;
-            border-left: 3px solid #3498db;
-        }
-        
-        .vocab-english {
-            font-weight: 500;
-            color: #2c3e50;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .vocab-chinese {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            margin-top: 5px;
-        }
-        
-        .play-vocab-btn {
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 0.8rem;
         }
         
         .unit-footer {
@@ -779,11 +812,41 @@
                                     ` : ''}
                                 </div>
                             `;
+                        } else if (part.type === 'vocabulary') {
+                            // 单词列表类型
+                            let vocabHTML = '';
+                            if (part.vocabulary && part.vocabulary.length > 0) {
+                                part.vocabulary.forEach(vocab => {
+                                    vocabHTML += `
+                                        <div class="vocab-item">
+                                            <div class="vocab-english">
+                                                ${vocab.english}
+                                                ${vocab.audio ? `
+                                                <button class="play-vocab-btn" data-audio="${vocab.audio}">
+                                                    <i class="fas fa-volume-up"></i>
+                                                </button>
+                                                ` : ''}
+                                            </div>
+                                            <div class="vocab-chinese">${vocab.chinese}</div>
+                                        </div>
+                                    `;
+                                });
+                            }
+                            contentHTML = `
+                                <div class="vocab-list-container">
+                                    <div class="vocab-list-title">
+                                        <i class="fas fa-book"></i> ${part.title}
+                                    </div>
+                                    <div class="vocab-list">
+                                        ${vocabHTML}
+                                    </div>
+                                </div>
+                            `;
                         }
                         
-                        // 生成词汇内容（如果有）
+                        // 生成词汇内容（如果有，且不是单词列表类型）
                         let vocabHTML = '';
-                        if (part.vocabulary && part.vocabulary.length > 0) {
+                        if (part.vocabulary && part.vocabulary.length > 0 && part.type !== 'vocabulary') {
                             let vocabItemsHTML = '';
                             part.vocabulary.forEach(vocab => {
                                 vocabItemsHTML += `
