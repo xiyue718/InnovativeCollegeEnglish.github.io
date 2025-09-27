@@ -451,6 +451,53 @@
                   "audio": ""
                 }
               ]
+            },
+            {
+              "id": 2,
+              "title": "Campus Vocabulary",
+              "type": "vocabulary",
+              "vocabulary": [
+                {
+                  "english": "campus",
+                  "chinese": "n.(大学)校园",
+                  "audio": ""
+                },
+                {
+                  "english": "dormitory",
+                  "chinese": "n.宿舍",
+                  "audio": "audio/Unit1/Topic1/Part2/dormitory.mp3"
+                },
+                {
+                  "english": "library",
+                  "chinese": "n.图书馆",
+                  "audio": ""
+                },
+                {
+                  "english": "cafeteria",
+                  "chinese": "n.食堂",
+                  "audio": ""
+                },
+                {
+                  "english": "laboratory",
+                  "chinese": "n.实验室",
+                  "audio": ""
+                },
+                {
+                  "english": "lecture",
+                  "chinese": "n.讲座",
+                  "audio": ""
+                },
+                {
+                  "english": "professor",
+                  "chinese": "n.教授",
+                  "audio": ""
+                },
+                {
+                  "english": "scholarship",
+                  "chinese": "n.奖学金",
+                  "audio": ""
+                }
+              ]
             }
           ]
         }
