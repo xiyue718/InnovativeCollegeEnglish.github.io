@@ -12,12 +12,13 @@
             {
               "id": 1,
               "title": "Useful Sentences",
+              "type": "numbered",
               "sentences": [
                 {
                   "id": 1,
                   "english": "How do you like your present campus life?",
                   "chinese": "你觉得你现在的校园生活怎么样？",
-                  "audio": "audio\\Unit1\\Topic1\\Part1\\1.mp3"
+                  "audio": "audio/Unit1/Topic1/Part1/1.mp3"
                 },
                 {
                   "id": 2,
@@ -106,16 +107,25 @@
             },
             {
               "id": 2,
-              "title": "自我介绍",
-              "sentences": [
+              "title": "Conversation Practice",
+              "type": "dialogue",
+              "content": [
                 {
-                  "english": "My name is John. Nice to meet you.",
-                  "chinese": "我叫约翰。很高兴认识你。",
+                  "speaker": "A",
+                  "text": "Hello, my name is John. Nice to meet you.",
+                  "translation": "你好，我叫约翰。很高兴认识你。",
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
                 },
                 {
-                  "english": "I'm from Canada. Where are you from?",
-                  "chinese": "我来自加拿大。你来自哪里？",
+                  "speaker": "B",
+                  "text": "Nice to meet you too, John. I'm from Canada. Where are you from?",
+                  "translation": "也很高兴认识你，约翰。我来自加拿大。你来自哪里？",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "speaker": "A",
+                  "text": "I'm from China. How do you like your campus life here?",
+                  "translation": "我来自中国。你觉得这里的校园生活怎么样？",
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
                 }
               ],
@@ -141,18 +151,21 @@
         },
         {
           "id": 2,
-          "title": "日常活动",
+          "title": "Daily Activities",
           "parts": [
             {
               "id": 1,
-              "title": "日常作息",
+              "title": "Daily Routine",
+              "type": "numbered",
               "sentences": [
                 {
+                  "id": 1,
                   "english": "I usually wake up at 7 o'clock in the morning.",
                   "chinese": "我通常早上7点起床。",
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
                 },
                 {
+                  "id": 2,
                   "english": "After work, I like to go for a walk in the park.",
                   "chinese": "下班后，我喜欢去公园散步。",
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
@@ -175,6 +188,33 @@
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
                 }
               ]
+            },
+            {
+              "id": 2,
+              "title": "Campus Description",
+              "type": "article",
+              "content": {
+                "english": "Our university campus is located in the suburbs, covering an area of over 100 hectares. It features modern teaching buildings, well-equipped laboratories, a large library, and various sports facilities. The campus environment is beautiful with green trees, colorful flowers, and a peaceful lake. Students can enjoy a comfortable and convenient life here with dormitories, canteens, supermarkets, and other facilities available on campus.",
+                "chinese": "我们大学校园位于郊区，占地100多公顷。校园内有现代化的教学楼、设备齐全的实验室、大型图书馆和各种体育设施。校园环境优美，绿树成荫，鲜花盛开，还有一个宁静的湖泊。学生可以在这里享受舒适便捷的生活，宿舍、食堂、超市等设施一应俱全。",
+                "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+              },
+              "vocabulary": [
+                {
+                  "english": "Campus",
+                  "chinese": "校园",
+                  "audio": ""
+                },
+                {
+                  "english": "Facilities",
+                  "chinese": "设施",
+                  "audio": ""
+                },
+                {
+                  "english": "Environment",
+                  "chinese": "环境",
+                  "audio": ""
+                }
+              ]
             }
           ]
         }
@@ -192,13 +232,16 @@
             {
               "id": 1,
               "title": "选择菜品",
+              "type": "numbered",
               "sentences": [
                 {
+                  "id": 1,
                   "english": "I'd like to order the grilled salmon with vegetables, please.",
                   "chinese": "我想点烤三文鱼配蔬菜。",
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
                 },
                 {
+                  "id": 2,
                   "english": "Could I have a glass of water as well?",
                   "chinese": "可以再给我一杯水吗？",
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
@@ -221,6 +264,37 @@
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
                 }
               ]
+            },
+            {
+              "id": 2,
+              "title": "餐厅对话",
+              "type": "dialogue",
+              "content": [
+                {
+                  "speaker": "Waiter",
+                  "text": "Good evening. Are you ready to order?",
+                  "translation": "晚上好。您准备好点餐了吗？",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "speaker": "Customer",
+                  "text": "Yes, I'd like the steak with mashed potatoes.",
+                  "translation": "是的，我想要牛排配土豆泥。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "speaker": "Waiter",
+                  "text": "How would you like your steak cooked?",
+                  "translation": "您的牛排要几分熟？",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "speaker": "Customer",
+                  "text": "Medium rare, please.",
+                  "translation": "请做成三分熟。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ]
             }
           ]
         },
@@ -231,13 +305,16 @@
             {
               "id": 1,
               "title": "支付账单",
+              "type": "numbered",
               "sentences": [
                 {
+                  "id": 1,
                   "english": "Could we have the bill, please?",
                   "chinese": "请给我们账单。",
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
                 },
                 {
+                  "id": 2,
                   "english": "Do you accept credit cards?",
                   "chinese": "你们接受信用卡吗？",
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
@@ -277,13 +354,16 @@
             {
               "id": 1,
               "title": "项目汇报",
+              "type": "numbered",
               "sentences": [
                 {
+                  "id": 1,
                   "english": "According to the quarterly report, our sales have increased by 15%.",
                   "chinese": "根据季度报告，我们的销售额增长了15%。",
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
                 },
                 {
+                  "id": 2,
                   "english": "We need to focus on improving our online presence.",
                   "chinese": "我们需要专注于提升我们的在线影响力。",
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
@@ -306,6 +386,31 @@
                   "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
                 }
               ]
+            },
+            {
+              "id": 2,
+              "title": "商务会议对话",
+              "type": "dialogue",
+              "content": [
+                {
+                  "speaker": "Manager",
+                  "text": "Let's start with the sales report from last quarter.",
+                  "translation": "让我们从上一季度的销售报告开始。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "speaker": "Employee",
+                  "text": "Our sales increased by 15% compared to the same period last year.",
+                  "translation": "与去年同期相比，我们的销售额增长了15%。",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                },
+                {
+                  "speaker": "Manager",
+                  "text": "That's excellent. What contributed to this growth?",
+                  "translation": "太好了。是什么促成了这一增长？",
+                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                }
+              ]
             }
           ]
         }
@@ -313,43 +418,37 @@
     },
     {
       "id": 4,
-      "title": "英语",
-      "subtitle": "专业场景",
+      "title": "英语学习技巧",
+      "subtitle": "学习方法",
       "themes": [
         {
           "id": 1,
-          "title": "会议讨论",
+          "title": "学习策略",
           "parts": [
             {
               "id": 1,
-              "title": "项目汇报",
-              "sentences": [
-                {
-                  "english": "According to the quarterly report, our sales have increased by 15%.",
-                  "chinese": "根据季度报告，我们的销售额增长了15%。",
-                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                },
-                {
-                  "english": "We need to focus on improving our online presence.",
-                  "chinese": "我们需要专注于提升我们的在线影响力。",
-                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
-                }
-              ],
+              "title": "有效学习方法",
+              "type": "article",
+              "content": {
+                "english": "Learning English requires consistent practice and exposure to the language. It's important to set realistic goals and create a study plan that fits your schedule. Try to immerse yourself in English as much as possible by watching movies, listening to music, and reading books in English. Don't be afraid to make mistakes - they are an essential part of the learning process. Practice speaking with native speakers or language partners to improve your fluency and confidence.",
+                "chinese": "学习英语需要持续的练习和语言接触。设定现实的目标并制定适合你时间表的学习计划很重要。尽量通过看英语电影、听英语音乐和阅读英语书籍来沉浸在英语环境中。不要害怕犯错 - 错误是学习过程中必不可少的一部分。与母语为英语的人或语言伙伴练习口语，以提高流利度和自信心。",
+                "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+              },
               "vocabulary": [
                 {
-                  "english": "Quarterly report",
-                  "chinese": "季度报告",
-                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                  "english": "Consistent",
+                  "chinese": "持续的",
+                  "audio": ""
                 },
                 {
-                  "english": "Sales",
-                  "chinese": "销售额",
-                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                  "english": "Immerse",
+                  "chinese": "沉浸",
+                  "audio": ""
                 },
                 {
-                  "english": "Online presence",
-                  "chinese": "在线影响力",
-                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                  "english": "Fluency",
+                  "chinese": "流利度",
+                  "audio": ""
                 }
               ]
             }

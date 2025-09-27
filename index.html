@@ -123,6 +123,11 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            display: none; /* 默认隐藏，通过分页控制显示 */
+        }
+        
+        .unit-card.active {
+            display: block; /* 当前单元显示 */
         }
         
         .unit-card.highlighted {
@@ -237,6 +242,7 @@
             display: none; /* 默认折叠 */
         }
         
+        /* 句子样式 */
         .sentences-container {
             margin-bottom: 20px;
         }
@@ -266,6 +272,45 @@
             line-height: 1.5;
             color: #7f8c8d;
             font-style: italic;
+        }
+        
+        /* 对话样式 */
+        .dialogue-container {
+            margin-bottom: 20px;
+        }
+        
+        .dialogue-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .speaker {
+            font-weight: bold;
+            color: #3498db;
+            margin-right: 10px;
+        }
+        
+        /* 文章样式 */
+        .article-container {
+            margin-bottom: 20px;
+        }
+        
+        .article-english {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .article-chinese {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #7f8c8d;
+            font-style: italic;
+            border-left: 3px solid #3498db;
+            padding-left: 15px;
         }
         
         .audio-player {
@@ -506,11 +551,8 @@
             </div>
         </div>
         
-        <div class="pagination">
-            <button class="active">1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>下一页</button>
+        <div class="pagination" id="pagination">
+            <!-- 分页按钮将通过JS动态生成 -->
         </div>
         
         <footer>
@@ -522,6 +564,7 @@
     <script>
         // 全局变量存储数据
         let unitsData = [];
+        let currentPage = 1;
 
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
@@ -548,6 +591,12 @@
                 // 生成单元卡片
                 generateUnitCards();
                 
+                // 生成分页
+                generatePagination();
+                
+                // 显示第一页
+                showPage(1);
+                
                 // 检查URL参数并跳转到相应部分
                 checkUrlParams();
                 
@@ -561,6 +610,44 @@
                 document.getElementById('loadingMessage').innerHTML = 
                     '<i class="fas fa-exclamation-triangle"></i> 加载数据失败，请刷新页面重试';
             }
+        }
+
+        // 生成分页
+        function generatePagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+            
+            unitsData.forEach((unit, index) => {
+                const button = document.createElement('button');
+                button.textContent = `单元 ${unit.id}`;
+                button.dataset.page = index + 1;
+                if (index === 0) {
+                    button.classList.add('active');
+                }
+                pagination.appendChild(button);
+            });
+        }
+
+        // 显示指定页
+        function showPage(page) {
+            currentPage = page;
+            
+            // 更新分页按钮状态
+            document.querySelectorAll('#pagination button').forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.dataset.page) === page) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // 显示/隐藏单元卡片
+            document.querySelectorAll('.unit-card').forEach((card, index) => {
+                if (index + 1 === page) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
         }
 
         // 更新跳转表单的最大值
@@ -628,39 +715,103 @@
                 unit.themes.forEach(theme => {
                     let partsHTML = '';
                     theme.parts.forEach(part => {
-                        // 生成句子内容
-                        let sentencesHTML = '';
-                        part.sentences.forEach(sentence => {
-                            sentencesHTML += `
-                                <div class="sentence-item">
-                                    <p class="english-text">${sentence.id}.${sentence.english}</p>
-                                    <p class="chinese-text">${sentence.chinese}</p>
+                        let contentHTML = '';
+                        
+                        // 根据part类型生成不同内容
+                        if (part.type === 'numbered') {
+                            // 编号句子类型
+                            let sentencesHTML = '';
+                            part.sentences.forEach(sentence => {
+                                sentencesHTML += `
+                                    <div class="sentence-item">
+                                        <p class="english-text">${sentence.id}. ${sentence.english}</p>
+                                        <p class="chinese-text">${sentence.chinese}</p>
+                                        ${sentence.audio ? `
+                                        <div class="audio-player">
+                                            <audio controls>
+                                                <source src="${sentence.audio}" type="audio/mpeg">
+                                                您的浏览器不支持音频元素。
+                                            </audio>
+                                        </div>
+                                        ` : ''}
+                                    </div>
+                                `;
+                            });
+                            contentHTML = `<div class="sentences-container">${sentencesHTML}</div>`;
+                            
+                        } else if (part.type === 'dialogue') {
+                            // 对话类型
+                            let dialogueHTML = '';
+                            part.content.forEach(item => {
+                                dialogueHTML += `
+                                    <div class="dialogue-item">
+                                        <div>
+                                            <span class="speaker">${item.speaker}:</span>
+                                            <span class="english-text">${item.text}</span>
+                                        </div>
+                                        <p class="chinese-text">${item.translation}</p>
+                                        ${item.audio ? `
+                                        <div class="audio-player">
+                                            <audio controls>
+                                                <source src="${item.audio}" type="audio/mpeg">
+                                                您的浏览器不支持音频元素。
+                                            </audio>
+                                        </div>
+                                        ` : ''}
+                                    </div>
+                                `;
+                            });
+                            contentHTML = `<div class="dialogue-container">${dialogueHTML}</div>`;
+                            
+                        } else if (part.type === 'article') {
+                            // 文章类型
+                            contentHTML = `
+                                <div class="article-container">
+                                    <p class="article-english">${part.content.english}</p>
+                                    <p class="article-chinese">${part.content.chinese}</p>
+                                    ${part.content.audio ? `
                                     <div class="audio-player">
                                         <audio controls>
-                                            <source src="${sentence.audio}" type="audio/wav">
+                                            <source src="${part.content.audio}" type="audio/mpeg">
                                             您的浏览器不支持音频元素。
                                         </audio>
                                     </div>
+                                    ` : ''}
                                 </div>
                             `;
-                        });
+                        }
                         
-                        // 生成词汇内容
+                        // 生成词汇内容（如果有）
                         let vocabHTML = '';
-                        part.vocabulary.forEach(vocab => {
-                            vocabHTML += `
-                                <div class="vocab-item">
-                                    <div class="vocab-english">
-                                        ${vocab.english}
-                                        <button class="play-vocab-btn" data-audio="${vocab.audio}">
-                                            <i class="fas fa-volume-up"></i>
-                                        </button>
+                        if (part.vocabulary && part.vocabulary.length > 0) {
+                            let vocabItemsHTML = '';
+                            part.vocabulary.forEach(vocab => {
+                                vocabItemsHTML += `
+                                    <div class="vocab-item">
+                                        <div class="vocab-english">
+                                            ${vocab.english}
+                                            ${vocab.audio ? `
+                                            <button class="play-vocab-btn" data-audio="${vocab.audio}">
+                                                <i class="fas fa-volume-up"></i>
+                                            </button>
+                                            ` : ''}
+                                        </div>
+                                        <div class="vocab-chinese">${vocab.chinese}</div>
                                     </div>
-                                    <div class="vocab-chinese">${vocab.chinese}</div>
-                                    <audio class="vocab-audio" src="${vocab.audio}"></audio>
+                                `;
+                            });
+                            
+                            vocabHTML = `
+                                <div class="vocab-section">
+                                    <div class="vocab-title">
+                                        <i class="fas fa-book"></i> New Words and Expressions
+                                    </div>
+                                    <div class="vocab-list">
+                                        ${vocabItemsHTML}
+                                    </div>
                                 </div>
                             `;
-                        });
+                        }
                         
                         partsHTML += `
                             <div class="part-section" id="part-${unit.id}-${theme.id}-${part.id}" 
@@ -672,17 +823,8 @@
                                     </button>
                                 </div>
                                 <div class="part-content">
-                                    <div class="sentences-container">
-                                        ${sentencesHTML}
-                                    </div>
-                                    <div class="vocab-section">
-                                        <div class="vocab-title">
-                                            <i class="fas fa-book"></i> New Words and Expressions
-                                        </div>
-                                        <div class="vocab-list">
-                                            ${vocabHTML}
-                                        </div>
-                                    </div>
+                                    ${contentHTML}
+                                    ${vocabHTML}
                                 </div>
                             </div>
                         `;
@@ -713,7 +855,7 @@
                 card.innerHTML = `
                     <div class="unit-header">
                         <h2 class="unit-title">单元 ${unit.id}: ${unit.title}</h2>
-                        <p class="unit-subtitle">${unit.subtitle}</p>
+                        ${unit.subtitle ? `<p class="unit-subtitle">${unit.subtitle}</p>` : ''}
                     </div>
                     <div class="unit-content">
                         ${themesHTML}
@@ -742,6 +884,12 @@
                 if (unitId >= 1 && unitId <= unitsData.length) {
                     // 延迟执行以确保DOM已完全加载
                     setTimeout(() => {
+                        // 先显示对应的单元页面
+                        const unitIndex = unitsData.findIndex(u => u.id === unitId);
+                        if (unitIndex !== -1) {
+                            showPage(unitIndex + 1);
+                        }
+                        
                         if (partId && topicId) {
                             jumpToPart(unitId, topicId, partId);
                         } else if (topicId) {
@@ -879,6 +1027,14 @@
                 });
             });
             
+            // 分页按钮点击事件
+            document.getElementById('pagination').addEventListener('click', function(e) {
+                if (e.target.tagName === 'BUTTON') {
+                    const page = parseInt(e.target.dataset.page);
+                    showPage(page);
+                }
+            });
+            
             // 单元输入变化时更新主题和部分的最大值
             document.getElementById('unitInput').addEventListener('change', function() {
                 const unitId = parseInt(this.value);
@@ -919,7 +1075,11 @@
             document.querySelectorAll('.unit-nav-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const unitId = parseInt(this.dataset.unitId);
-                    jumpToUnit(unitId);
+                    const unitIndex = unitsData.findIndex(u => u.id === unitId);
+                    if (unitIndex !== -1) {
+                        showPage(unitIndex + 1);
+                        jumpToUnit(unitId);
+                    }
                 });
             });
             
@@ -971,18 +1131,11 @@
                     const playBtn = e.target.classList.contains('play-vocab-btn') ? 
                                    e.target : e.target.parentElement;
                     const audioSrc = playBtn.getAttribute('data-audio');
-                    const audioElement = new Audio(audioSrc);
-                    audioElement.play();
+                    if (audioSrc) {
+                        const audioElement = new Audio(audioSrc);
+                        audioElement.play();
+                    }
                 }
-            });
-            
-            // 分页按钮
-            const paginationButtons = document.querySelectorAll('.pagination button');
-            paginationButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    paginationButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                });
             });
         }
     </script>
