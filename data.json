@@ -24,13 +24,13 @@
                   "id": 2,
                   "english": "The campus covers an area of twenty square kilometers.",
                   "chinese": "校园占地20平方公里。",
-                  "audio": ""
+                  "audio": "audio/Unit1/Topic1/Part1/sentences2.mp3"
                 },
                 {
                   "id": 3,
                   "english": "The beautiful scenery of the campus, with its green lawns and green threes, creates a peaceful and pleasant learning environment.",
                   "chinese": "大学校园美丽的景色，有绿色的草坪和树木，营造出宁静宜人的学习环境。",
-                  "audio": ""
+                  "audio": "audio/Unit1/Topic1/Part1/sentences3.mp3"
                 },
                 {
                   "id": 4,
@@ -525,6 +525,84 @@
                 {
                   "english": "scholarship",
                   "chinese": "n.奖学金",
+                  "audio": ""
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "title": "Conversation Practice",
+              "type": "conversation-sections",
+              "sections": [
+                {
+                  "title": "Conversation A",
+                  "type": "dialogue",
+                  "content": [
+                    {
+                      "speaker": "A",
+                      "text": "Hello, my name is John. Nice to meet you.",
+                      "translation": "你好，我叫约翰。很高兴认识你。",
+                      "audio": "audio/Unit1/Topic1/Part2/A1.mp3"
+                    },
+                    {
+                      "speaker": "B",
+                      "text": "Nice to meet you too, John. I'm from Canada. Where are you from?",
+                      "translation": "也很高兴认识你，约翰。我来自加拿大。你来自哪里？",
+                      "audio": "audio/Unit1/Topic1/Part2/B1.mp3"
+                    }
+                  ]
+                },
+                {
+                  "title": "Conversation B",
+                  "type": "dialogue",
+                  "content": [
+                    {
+                      "speaker": "A",
+                      "text": "How do you like your campus life here?",
+                      "translation": "你觉得这里的校园生活怎么样？",
+                      "audio": "audio/Unit1/Topic1/Part2/A2.mp3"
+                    },
+                    {
+                      "speaker": "B",
+                      "text": "It's great! The campus is beautiful and the facilities are excellent.",
+                      "translation": "很棒！校园很漂亮，设施也很完善。",
+                      "audio": "audio/Unit1/Topic1/Part2/B2.mp3"
+                    }
+                  ]
+                },
+                {
+                  "title": "Useful Expressions",
+                  "type": "numbered",
+                  "sentences": [
+                    {
+                      "id": 1,
+                      "english": "What's your major?",
+                      "chinese": "你的专业是什么？",
+                      "audio": "audio/Unit1/Topic1/Part2/expr1.mp3"
+                    },
+                    {
+                      "id": 2,
+                      "english": "How many classes do you have this semester?",
+                      "chinese": "你这学期有多少门课？",
+                      "audio": "audio/Unit1/Topic1/Part2/expr2.mp3"
+                    }
+                  ]
+                }
+              ],
+              "vocabulary": [
+                {
+                  "english": "campus",
+                  "chinese": "n.(大学)校园",
+                  "audio": ""
+                },
+                {
+                  "english": "facilities",
+                  "chinese": "n.设施",
+                  "audio": ""
+                },
+                {
+                  "english": "major",
+                  "chinese": "n.专业",
                   "audio": ""
                 }
               ]
