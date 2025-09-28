@@ -18,7 +18,7 @@
                   "id": 1,
                   "english": "How do you like your present campus life?",
                   "chinese": "你觉得你现在的校园生活怎么样？",
-                  "audio": "audio/Unit1/Topic1/Part1/1.mp3"
+                  "audio": "audio/Unit1/Topic1/Part1/sentences1.mp3"
                 },
                 {
                   "id": 2,
@@ -101,7 +101,37 @@
                 {
                   "english": "square",
                   "chinese": "adj.平方的;正方形的;正直的 n.平方;广场;正方形",
-                  "audio": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+                  "audio": ""
+                },
+                {
+                  "english": "lawn",
+                  "chinese": "n.草坪",
+                  "audio": ""
+                },
+                {
+                  "english": "scene",
+                  "chinese": "n.场景;情景;景象",
+                  "audio": ""
+                },
+                {
+                  "english": "involve",
+                  "chinese": "v.包含;牵涉;使陷于",
+                  "audio": ""
+                },
+                {
+                  "english": "extra-curricular",
+                  "chinese": "adj.课外的",
+                  "audio": ""
+                },
+                {
+                  "english": "surround",
+                  "chinese": "v.围绕;包围",
+                  "audio": ""
+                },
+                {
+                  "english": "artificial",
+                  "chinese": "adj.人造的;仿造的",
+                  "audio": ""
                 }
               ]
             },
