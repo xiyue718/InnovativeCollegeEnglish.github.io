@@ -242,6 +242,47 @@
             display: none; /* 默认折叠 */
         }
         
+        /* 对话分区样式 */
+        .conversation-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .conversation-section {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .conversation-section-header {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .conversation-section-title {
+            font-size: 1.1rem;
+        }
+        
+        .conversation-section-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #3498db;
+            font-size: 1rem;
+        }
+        
+        .conversation-section-content {
+            padding: 15px;
+        }
+        
         /* 句子样式 */
         .sentences-container {
             margin-bottom: 20px;
@@ -495,6 +536,10 @@
         }
         
         .collapsed .theme-content {
+            display: none;
+        }
+        
+        .collapsed .conversation-section-content {
             display: none;
         }
         
@@ -842,6 +887,74 @@
                                     </div>
                                 </div>
                             `;
+                        } else if (part.type === 'conversation-sections') {
+                            // 对话分区类型
+                            let conversationSectionsHTML = '';
+                            if (part.sections && part.sections.length > 0) {
+                                part.sections.forEach(section => {
+                                    let sectionContentHTML = '';
+                                    
+                                    if (section.type === 'dialogue') {
+                                        // 对话内容
+                                        let dialogueHTML = '';
+                                        section.content.forEach(item => {
+                                            dialogueHTML += `
+                                                <div class="dialogue-item">
+                                                    <div>
+                                                        <span class="speaker">${item.speaker}:</span>
+                                                        <span class="english-text">${item.text}</span>
+                                                    </div>
+                                                    <p class="chinese-text">${item.translation}</p>
+                                                    ${item.audio ? `
+                                                    <div class="audio-player">
+                                                        <audio controls>
+                                                            <source src="${item.audio}" type="audio/mpeg">
+                                                            您的浏览器不支持音频元素。
+                                                        </audio>
+                                                    </div>
+                                                    ` : ''}
+                                                </div>
+                                            `;
+                                        });
+                                        sectionContentHTML = `<div class="dialogue-container">${dialogueHTML}</div>`;
+                                    } else if (section.type === 'numbered') {
+                                        // 编号句子
+                                        let sentencesHTML = '';
+                                        section.sentences.forEach(sentence => {
+                                            sentencesHTML += `
+                                                <div class="sentence-item">
+                                                    <p class="english-text">${sentence.id}. ${sentence.english}</p>
+                                                    <p class="chinese-text">${sentence.chinese}</p>
+                                                    ${sentence.audio ? `
+                                                    <div class="audio-player">
+                                                        <audio controls>
+                                                            <source src="${sentence.audio}" type="audio/mpeg">
+                                                            您的浏览器不支持音频元素。
+                                                        </audio>
+                                                    </div>
+                                                    ` : ''}
+                                                </div>
+                                            `;
+                                        });
+                                        sectionContentHTML = `<div class="sentences-container">${sentencesHTML}</div>`;
+                                    }
+                                    
+                                    conversationSectionsHTML += `
+                                        <div class="conversation-section">
+                                            <div class="conversation-section-header">
+                                                <span class="conversation-section-title">${section.title}</span>
+                                                <button class="conversation-section-toggle">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="conversation-section-content">
+                                                ${sectionContentHTML}
+                                            </div>
+                                        </div>
+                                    `;
+                                });
+                            }
+                            contentHTML = `<div class="conversation-sections">${conversationSectionsHTML}</div>`;
                         }
                         
                         // 生成词汇内容（如果有，且不是单词列表类型）
@@ -1184,6 +1297,26 @@
                     } else {
                         icon.classList.remove('fa-chevron-down');
                         icon.classList.add('fa-chevron-right');
+                    }
+                }
+                
+                // 对话分区折叠/展开功能
+                if (e.target.classList.contains('conversation-section-toggle') || 
+                    e.target.parentElement.classList.contains('conversation-section-toggle')) {
+                    
+                    const toggleBtn = e.target.classList.contains('conversation-section-toggle') ? 
+                                     e.target : e.target.parentElement;
+                    const conversationSection = toggleBtn.closest('.conversation-section');
+                    
+                    conversationSection.classList.toggle('collapsed');
+                    
+                    const icon = toggleBtn.querySelector('i');
+                    if (conversationSection.classList.contains('collapsed')) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-right');
+                    } else {
+                        icon.classList.remove('fa-chevron-right');
+                        icon.classList.add('fa-chevron-down');
                     }
                 }
                 
